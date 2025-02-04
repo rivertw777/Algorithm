@@ -1,20 +1,16 @@
+from collections import defaultdict
+
 def solution(n, results):
     answer = 0
-    board = [[0]*n for _ in range(n)]
-    
-    for a,b in results:
-        board[a-1][b-1] = 1
-        board[b-1][a-1] = -1
-        
-    for k in range(n):
-        for i in range(n):
-            for j in range(n):
-                if i == j or board[i][j] in [1,-1]:
-                    continue
-                if board[i][k] == board[k][j] == 1:
-                    board[i][j] = 1
-                    board[j][i] = board[k][i] = board[j][k] = -1
-    for row in board:
-        if row.count(0) == 1:
-            answer += 1
+    win, lose = defaultdict(set), defaultdict(set)
+    for result in results:
+            lose[result[1]].add(result[0])
+            win[result[0]].add(result[1])
+
+    for i in range(1, n + 1):
+        for winner in lose[i]: win[winner].update(win[i])
+        for loser in win[i]: lose[loser].update(lose[i])
+
+    for i in range(1, n+1):
+        if len(win[i]) + len(lose[i]) == n - 1: answer += 1
     return answer
