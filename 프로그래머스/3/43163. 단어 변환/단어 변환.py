@@ -21,6 +21,5 @@ def dfs(begin, target, words, count):
     
     
 def solution(begin, target, words):
-    global answer
     dfs(begin, target, words, 0)
     return answer
