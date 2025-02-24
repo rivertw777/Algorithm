@@ -1,20 +1,20 @@
 import heapq as hq
 
-def solution(operations):
-    answer = []
+def solution(op):
+    p = []
+    hq.heapify(p)
     
-    q = []
-    for op in operations:
-        a, b = op.split(" ")
+    for i in op:
+        a, b = i.split(" ")
         
-        if q and a == "D" and b == "1":
-            q.remove(max(q))
-        elif q and a == "D" and b == "-1":
-            hq.heappop(q)
-        elif a == "I":
-            hq.heappush(q, int(b))
-                            
-    if q:
-        return [max(q), min(q)]
+        if a == "I":
+            hq.heappush(p, int(b))
+        elif p and a == "D" and b == "-1":
+            hq.heappop(p)
+        elif p and a == "D" and b == "1":
+            p.remove(max(p))
+    
+    if p: 
+        return [max(p), min(p)]
     else:
-        return [0,0]
+        return [0, 0]
