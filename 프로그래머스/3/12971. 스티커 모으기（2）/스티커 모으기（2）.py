@@ -1,4 +1,5 @@
 def solution(sticker):
+    
     if len(sticker) == 1:
         return sticker[0]
     
@@ -20,13 +21,11 @@ def solution(sticker):
     new = sticker[1:]
     dp = [0] * len(new)
     dp[0] = new[0]
-    
-    if len(new) > 1:
-        dp[1] = max(new[0], new[1])
+    dp[1] = max(new[0], new[1])
     
     for i in range(2, len(new)):
         dp[i] = max(dp[i-1], dp[i-2] + new[i])
     
-    case2 = dp[-1]
+    case2 = dp[-1]    
     
     return max(case1, case2)
