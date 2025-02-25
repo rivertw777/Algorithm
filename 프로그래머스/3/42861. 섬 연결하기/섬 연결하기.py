@@ -11,10 +11,10 @@ def solution(n, costs):
             
     ans = 0
     hq.heappush(p, (0,0))
-    while False in visited:
+    while p:
         cost, cur = hq.heappop(p)
         
-        if visited[cur]:
+        if visited[cur]: # 이미 방문이면 pass
             continue
         
         visited[cur] = True
