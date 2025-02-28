@@ -1,32 +1,24 @@
 def solution(tickets):
-    d = {}
-    for i in tickets:
-        if i[0] not in d:
-            d[i[0]] = [i[1]]
-        else:
-            d[i[0]].append(i[1])
-            
-    for i in d:
-        d[i].sort()
+    dct = {}
     
-    print(d)
-    print()
-            
-    st = ["ICN"]
-    answer = []
-    while st:
-        start = st[-1]
-        
-        if start in d and d[start]:
-            
-            item = d[start].pop(0)
-            st.append(item)
-            
-            print(st, " - ", d)
-            if len(st) == len(tickets) + 1:
-                return st
-            
+    for t in tickets:
+        if t[0] not in dct:
+            dct[t[0]] = []
+            dct[t[0]].append(t[1])
         else:
-            answer.append(st.pop())
+            dct[t[0]].append(t[1])
+            
+    for i in dct:
+        dct[i].sort()
+        
+    st = ["ICN"]
+    ans = []
+    while st:
+        start =  st[-1]
+        
+        if start in dct and dct[start]:
+            st.append(dct[start].pop(0))
+        else:
+            ans.append(st.pop())
                         
-    return answer[::-1]
+    return ans[::-1]
