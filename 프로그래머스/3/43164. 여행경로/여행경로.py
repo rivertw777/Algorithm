@@ -22,3 +22,4 @@ def solution(tickets):
             ans.append(st.pop())
                         
     return ans[::-1]
+
