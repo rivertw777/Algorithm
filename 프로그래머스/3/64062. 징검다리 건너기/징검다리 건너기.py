@@ -1,11 +1,10 @@
 from collections import deque
 
 def solution(stones, k):
-    n = len(stones)
     q = deque()
     answer = float('inf')
 
-    for i in range(n):
+    for i in range(len(stones)):
         while q and q[0][1] <= i - k:
             q.popleft()
         
