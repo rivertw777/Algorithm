@@ -1,17 +1,16 @@
 def solution(gems):
-    answer = []
-    
     total = len(set(gems))
-    
     if total == 1:
         return [1,1]
+    
+    answer = []
     
     temp = {}
     temp[gems[0]] = 1
     start, end = 1,1
     while end <= len(gems):
                         
-        if len(temp) < total:
+        if len(temp) < total:  
             if end == len(gems):
                 break
             end += 1
