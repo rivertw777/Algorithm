@@ -4,19 +4,19 @@ def solution(jobs):
     n = len(jobs)
     jobs.sort()
     
+    answer = 0
+    time = 0
     q = []
-    cur = 0
-    total = 0
-    while q or jobs:
-        
-        while jobs and cur >= jobs[0][0]: #  현재 시점 넣을 수 있는 작업 모두 삽입
+    while jobs or q:
+        while jobs and jobs[0][0] <= time:
             hq.heappush(q, jobs.pop(0)[::-1])
-            
+        
         if q:
-            job = hq.heappop(q)[::-1]
-            cur += job[1]
-            total += cur - job[0]
+            item = hq.heappop(q)
+            time += item[0]
+            answer += ( time - item[1] )
+            
         else:
-            cur = jobs[0][0]
-                        
-    return total // n
+            time = jobs[0][0]
+                    
+    return answer // n
