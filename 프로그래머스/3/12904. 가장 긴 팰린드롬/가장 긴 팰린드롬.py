@@ -4,10 +4,7 @@ def expand_around_center(s, left, right):
         right += 1
     return right - left - 1  # 팰린드롬의 길이 반환
 
-def solution(s):
-    if not s:
-        return 0
-    
+def solution(s):    
     max_length = 1
     
     for i in range(len(s)):
