@@ -1,15 +1,13 @@
 def solution(n, stations, w):
-    ans = 0
-    idx = 0
-    location = 1
-
-    while location <= n:
-        if idx < len(stations) and location >= stations[idx] - w:
-            location = stations[idx] + w + 1  # 전파 도달 밖
-            idx += 1
+    answer = 0
+    cur = 1
+    index = 0 
+    while cur <= n:        
+        if index < len(stations) and cur >= stations[index] - w:
+            cur = stations[index] + w + 1
+            index += 1
         else:
-            location += 2 * w + 1
-            ans += 1
-            
-
-    return ans
+            cur += 2 * w + 1 
+            answer += 1
+    
+    return answer
