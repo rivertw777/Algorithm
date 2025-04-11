@@ -1,27 +1,25 @@
-import java.util.Stack;
+import java.util.*;
+
 class Solution {
     boolean solution(String s) {
-        boolean answer = true;  
-        String res = "YES";
-        Stack<Integer> st = new Stack<>();
-
+        Stack<String> st = new Stack<>();
+        
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == '(') {
-                st.push(1);
-            } else if (s.charAt(i) == ')') {
+                st.push("(");
+            } else {
                 if (st.isEmpty()) {
-                    answer = false;
-                    break;
+                    return false;
                 } else {
                     st.pop();
                 }
             }
         }
-
-        if(!st.isEmpty()) {
-            answer = false;
+        
+        if (!st.isEmpty()) {
+            return false;
         }
-
-        return answer;
-    }   
+        
+        return true;
+    }
 }
