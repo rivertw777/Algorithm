@@ -1,16 +1,14 @@
 import java.util.*;
 
 public class Solution {
-    public Stack<Integer> solution(int []arr) {
-
-        Stack<Integer> stack = new Stack<>();
-
-        for(int num : arr){
-            if(stack.size() == 0 || stack.peek() != num){
-                stack.push(num);
+    public int[] solution(int []arr) {
+        Stack<Integer> st = new Stack<>();
+        
+        for (int number: arr) {
+            if (st.size() == 0 || st.peek() != number) {
+                st.push(number);
             }
         }
-
-        return stack;
+        return st.stream().mapToInt(i->i).toArray();
     }
 }
