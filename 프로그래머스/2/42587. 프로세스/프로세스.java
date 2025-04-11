@@ -5,29 +5,28 @@ class Solution {
         int answer = 0;
         int l = location;
 
-        Queue<Integer> que = new LinkedList<Integer>();
+        Queue<Integer> q = new LinkedList<>();
         for(int i : priorities){
-            que.add(i);
+            q.add(i);
         }
 
         Arrays.sort(priorities);
         int size = priorities.length-1;
 
-        while(!que.isEmpty()){
-            Integer i = que.poll();
-            if(i == priorities[size - answer]){
+        while(!q.isEmpty()) {
+            Integer i = q.poll();
+            if (i == priorities[size - answer]) {
                 answer++;
                 l--;
                 if(l <0)
                     break;
-            }else{
-                que.add(i);
+            } else {
+                q.add(i);
                 l--;
                 if(l<0)
-                    l=que.size()-1;
+                    l=q.size()-1;
             }
         }
-
         return answer;
     }
 }
