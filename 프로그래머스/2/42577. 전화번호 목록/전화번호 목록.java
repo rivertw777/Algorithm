@@ -1,14 +1,14 @@
-import java.util.HashMap;
 import java.util.Arrays;
 
 class Solution {
-    public boolean solution(String[] phoneBook) {
-        Arrays.sort(phoneBook);
-
-        for(int i=0; i<phoneBook.length-1; i++) {
-            if(phoneBook[i+1].startsWith(phoneBook[i]))
+    public boolean solution(String[] pb) {
+        Arrays.sort(pb);
+        
+        for (int i = 0; i < pb.length - 1; i++) {
+            if (pb[i+1].startsWith(pb[i]))
                 return false;
         }
+        
         return true;
     }
 }
