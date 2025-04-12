@@ -1,25 +1,28 @@
-
-import java.util.Stack;
+import java.util.*;
 
 class Solution {
-    public int[] solution(int[] prices) {
-        Stack<Integer> beginIdxs = new Stack<>();
-        int i=0;
-        int[] terms = new int[prices.length];
-
-        beginIdxs.push(i);
-        for (i=1; i<prices.length; i++) {
-            while (!beginIdxs.empty() && prices[i] < prices[beginIdxs.peek()]) {
-                int beginIdx = beginIdxs.pop();
-                terms[beginIdx] = i - beginIdx;
+    public List<Integer> solution(int[] prices) {
+        Queue<Integer> q = new LinkedList<>();
+            
+        for (int p: prices) {
+            q.offer(p);
+        }
+                
+        List<Integer> answer = new ArrayList<>();
+        while (!q.isEmpty()) {
+            int item = q.poll();
+            
+            int cnt = 0;
+            for (int next: q) {
+                cnt++;
+                if (item <= next) {
+                    continue;
+                } else {
+                    break;
+                }
             }
-            beginIdxs.push(i);
+            answer.add(cnt);
         }
-        while (!beginIdxs.empty()) {
-            int beginIdx = beginIdxs.pop();
-            terms[beginIdx] = i - beginIdx - 1;
-        }
-
-        return terms;
+        return answer;
     }
 }
