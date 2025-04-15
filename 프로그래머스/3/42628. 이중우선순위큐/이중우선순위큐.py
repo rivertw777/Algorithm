@@ -1,20 +1,19 @@
 import heapq as hq
 
 def solution(op):
-    p = []
-    hq.heapify(p)
     
+    q = []
     for i in op:
-        a, b = i.split(" ")
-        
-        if a == "I":
-            hq.heappush(p, int(b))
-        elif p and a == "D" and b == "-1":
-            hq.heappop(p)
-        elif p and a == "D" and b == "1":
-            p.remove(max(p))
+        a, b = i.split()
+        if a == 'I':
+            hq.heappush(q, int(b))
+        elif a == 'D' and q:
+            if b == '1':
+                q.remove(max(q))
+            elif b == '-1':
+                hq.heappop(q)
     
-    if p: 
-        return [max(p), min(p)]
+    if q:
+        return [max(q), min(q)]
     else:
-        return [0, 0]
+        return [0,0]
