@@ -1,32 +1,29 @@
-def solution(genres, plays):
-    n = len(plays)
-    dct = {}
-    
-    for i in range(n):
-        if genres[i] not in dct:
-            dct[genres[i]] = plays[i]
+def solution(genres, plays):    
+    n = len(genres)
+    most = {}
+    for i in range(n):    
+        if genres[i] in most:
+            most[genres[i]] += plays[i]
         else:
-            dct[genres[i]] += plays[i]
+            most[genres[i]] = plays[i]
         
-    sort_g = sorted(dct.items(), key = lambda x:-x[1])
-    print(sort_g)
-    
+    # 속한 노래가 많이 재생된 장르
+    most = sorted(most.items(), key = lambda x:-x[1])
+
     answer = []
-    for i in sort_g:
-        g = i[0]
-        
+    for i in most:
+        g = i[0]         
         temp = []
         for j in range(n):
-            if genres[j] == g:
-                # 플레이 횟수, 인덱스
-                temp.append([plays[j], j])
-        
-        # 플레이 횟수 많은 순, 인덱스 빠른 순
-        temp.sort(key = lambda x: (-x[0], x[1]))
-        
-        if len(temp) > 0:  # 1개 
-            answer.append(temp[0][1])
-        if len(temp) > 1: # 2개
-            answer.append(temp[1][1])
-            
-    return answer
+            if g == genres[j]:
+                temp.append([j, plays[j]])
+
+        temp.sort(key=lambda x:(-x[1], x[0]))
+
+        if len(temp) >= 2:
+            answer.append(temp[0][0])
+            answer.append(temp[1][0])
+        else:
+            answer.append(temp[0][0])
+    
+    return answer 
