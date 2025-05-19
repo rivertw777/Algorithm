@@ -1,25 +1,22 @@
 answer = 0
 
-def dfs(begin, target, words, count):
+def dfs(begin, target, words, cnt):
     global answer
-    
+
     if begin == target:
-        answer = count
-        return 
-        
-    for w in words:
-        
+        answer = cnt
+
+    for word in words:
         dif = 0
-        for i in range(len(w)):
-            if begin[i] != w[i]:
+        for i in range(len(word)):
+            if begin[i] != word[i]:
                 dif += 1
-        
+
         if dif == 1:
-            new_words = words[:]
-            new_words.remove(w)
-            dfs(w, target, new_words, count+1)
-    
-    
+            new = words[:]
+            new.remove(word)
+            dfs(word, target, new, cnt+1)
+            
 def solution(begin, target, words):
     dfs(begin, target, words, 0)
     return answer
