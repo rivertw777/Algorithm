@@ -1,10 +1,10 @@
-answer = 0
+answer = 1e9
 
 def dfs(begin, target, words, cnt):
     global answer
 
     if begin == target:
-        answer = cnt
+        answer = min(answer, cnt)
 
     for word in words:
         dif = 0
@@ -19,4 +19,7 @@ def dfs(begin, target, words, cnt):
             
 def solution(begin, target, words):
     dfs(begin, target, words, 0)
+    
+    if answer == 1e9:
+        return 0
     return answer
