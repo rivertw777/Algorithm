@@ -1,12 +1,12 @@
-def solution(A, B):
+def solution(a, b):
     answer = 0
-    A.sort()
-    B.sort()
-    j = 0
-
-    for i in range(len(A)):
-        if A[j] < B[i]:
+    a.sort()
+    b.sort()
+    
+    index = 0
+    for i in range(len(a)):
+        if b[i] > a[index]:
             answer += 1
-            j += 1
+            index += 1
 
     return answer
