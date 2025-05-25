@@ -4,7 +4,7 @@ def solution(n, s):
     if a == 0:
         return [-1]
     
-    b = s%n
+    b = s % n
     
     answer = []    
     for i in range(n-b):
