@@ -8,31 +8,21 @@ def is_matching(user_id, banned_id):
         
     return True
 
-def dfs(same_lists, list_index, cur_list, answer_set):
-
-    for el in same_lists[list_index]:
-        if el in cur_list:
-            continue
-        cur_list.append(el)
-        if len(cur_list) == len(same_lists):
-            answer_set.add(tuple(sorted(cur_list)))
-
-        if list_index + 1 < len(same_lists):
-            dfs(same_lists, list_index+1, cur_list, answer_set)
-        cur_list.remove(el)
-
-def solution(user_ids, banned_ids):
-    answer = 0
-    answer_set = set()
-    same_lists = []
-    for banned_id in banned_ids:
-        same_list = []  # banned_id당 일치하는 아이디들
-        for user_id in user_ids:
-            if is_matching(user_id, banned_id):
-                same_list.append(user_id)
-        same_lists.append(same_list)
-
-    new_tmp = []
-    dfs(same_lists, 0, new_tmp, answer_set)
+def dfs(user_id, banned_id, index, temp, result):
+    # 모든 banned_id를 처리했으면 결과에 추가
+    if index == len(banned_id):
+        result.add(tuple(sorted(temp)))
+        return
     
-    return len(answer_set)
+    # 현재 banned_id와 매칭되는 user_id들을 찾아서 시도
+    for user in user_id:
+        if user not in temp and is_matching(user, banned_id[index]):
+            temp.append(user)
+            dfs(user_id, banned_id, index + 1, temp, result)
+            temp.pop()  # 백트래킹
+
+def solution(user_id, banned_id):
+    result = set()
+    temp = []
+    dfs(user_id, banned_id, 0, temp, result)
+    return len(result)
