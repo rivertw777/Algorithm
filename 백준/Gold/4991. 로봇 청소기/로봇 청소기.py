@@ -1,6 +1,7 @@
 from collections import deque
 import sys
 input = sys.stdin.readline
+
 def makeGraph(R,C,position,arr)->list|int:
     graph = list()
     value = bfs(R,C,0,arr,position)
@@ -48,8 +49,11 @@ def recur(totalLength,beforeNode):
 
 while True:
     C,R = map(int,input().split())
-    if not C and not R:break
-    arr = [input().rstrip() for _ in range(R)]
+    
+    if not C and not R:
+        break
+    
+    arr = [input() for _ in range(R)]
     position = [()]
     for r in range(R):
         for c in range(C):
@@ -58,10 +62,13 @@ while True:
                     position.append((r,c))
                 case 'o':
                     position[0] = (r,c)
+    
     graph = makeGraph(R,C,position,arr)
+    
     if len(graph) == 0:
         print(-1)
         continue
+    
     ans = float('inf')
     notVisit = set(range(1,len(position)))
     recur(0,0)
