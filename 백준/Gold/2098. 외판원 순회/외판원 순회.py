@@ -1,11 +1,9 @@
-import sys
 N = int(input())
 world = []
 for _ in range(N):
-    world.append(list(map(int, sys.stdin.readline().split())))
+    world.append(list(map(int, input().split())))
 
 dp = {}
-
 
 def DFS(now, visited):
     # 모든 도시를 방문한 경우
