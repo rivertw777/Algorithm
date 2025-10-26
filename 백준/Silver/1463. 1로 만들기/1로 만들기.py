@@ -6,14 +6,10 @@ while n > 1:
     dp[n-1] = min(dp[n-1], dp[n] + 1)
     
     if n % 3 == 0:
-        n //= 3
-        dp[n] = min(dp[n], dp[n*3] + 1)
-        n *= 3
+        dp[n//3] = min(dp[n//3], dp[n] + 1)
         
     if n % 2 == 0:
-        n //= 2 
-        dp[n] = min(dp[n], dp[n*2] + 1)
-        n *= 2 
+        dp[n//2] = min(dp[n//2], dp[n] + 1)
 
     n -= 1
         
