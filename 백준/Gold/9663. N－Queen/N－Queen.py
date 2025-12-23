@@ -1,9 +1,6 @@
-import sys
-input = sys.stdin.readline
+N = int(input())
  
-n = int(input())
-	
-visited = [-1] * n
+visited = [-1] * N
 cnt = 0
  
 def check(now_row):
@@ -11,18 +8,17 @@ def check(now_row):
         if visited[now_row] == visited[row] or now_row - row == abs(visited[now_row] - visited[row]):
             return False
     return True
- 
-def dfs(row):
-    global cnt
     
-    if row == n: 
+def dfs(row):
+    if row == N:
+        global cnt
         cnt += 1
+        return
  
-    else:
-        for col in range(n):
-            visited[row] = col
-            if check(row): 
-                dfs(row + 1) 
-                
+    for col in range(N):
+        visited[row] = col
+        if check(row):
+            dfs(row + 1)
+ 
 dfs(0)
 print(cnt)
