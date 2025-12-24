@@ -4,7 +4,7 @@ n, s = map(int, input().split())
 arr = list(map(int, input().split()))
 cnt = 0
 
-def subset_sum(idx, sub_sum):
+def dfs(idx, sub_sum):
     global cnt
 
     if idx >= n:
@@ -16,10 +16,10 @@ def subset_sum(idx, sub_sum):
         cnt += 1
     
     # 현재 arr[idx]를 선택한 경우의 가지
-    subset_sum(idx+1, sub_sum)
+    dfs(idx+1, sub_sum)
 
     # 현재 arr[idx]를 선택하지 않은 경우의 가지
-    subset_sum(idx+1, sub_sum - arr[idx])
+    dfs(idx+1, sub_sum - arr[idx])
 
-subset_sum(0, 0)
+dfs(0, 0)
 print(cnt)
