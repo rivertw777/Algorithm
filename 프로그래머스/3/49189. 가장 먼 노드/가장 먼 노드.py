@@ -24,8 +24,10 @@ def solution(n, edge):
                 hq.heappush(q, (cost, i))
         
     m = max(distance[1:])
+    print(distance)
     cnt = 0
     for i in distance:
         if i == m:
             cnt += 1
+    print(cnt)
     return cnt
