@@ -1,22 +1,23 @@
 from collections import deque
 
-def bfs(start, computers, visited):
-    visited[start] = True
-    q = deque([start])
+def bfs(i, computers, visited):
+    q = deque([i])
+
     while q:
-        cur = q.popleft()
-        for i in range(len(computers[cur])):            
-            if i != cur and computers[cur][i] == 1 and not visited[i]:
-                visited[i] = True
-                q.append(i)
-            
+        item = q.popleft()
+        visited[item] = True
+        
+        for n in range(len(computers)):
+            if not visited[n] and computers[item][n] == 1:
+                q.append(n)
+
 def solution(n, computers):
     answer = 0
+
     visited = [False] * n
- 
     for i in range(n):
         if not visited[i]:
             bfs(i, computers, visited)
             answer += 1
-        
+    
     return answer
